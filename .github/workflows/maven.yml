@@ -54,7 +54,18 @@ jobs:
       if: always()
 
       run: |
-         mkdir -p pu
+         mkdir -p public/extent-reports
+         cp -R reports.html public/extent-reports/
+         cp -R screenshots/ public/extent-reports/screenshots/
+         ls -l
+
+    -name: Deploy
+      if: always()
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: public/extent-reports/
+        token: ${{ secrets.PAT1234 }}
+        clean: true
     
 
 
